@@ -2,6 +2,8 @@ const express = require("express")
 const cors = require("cors")
 const {connection} = require("./configuration/db")
 const {userRoute} = require("./route/user.route")
+const {carRoute} = require("./route/car.route")
+const { oemRoute } =require('./route/oem.route')
 const {authentication} = require("./middleware/authentication")
 require('dotenv').config()
 
@@ -15,6 +17,8 @@ app.get("/",(req, res)=>{
 
 app.use("/user", userRoute)
 app.use(authentication)
+app.use("/car", carRoute)
+app.use("/oem", oemRoute)
 
 app.listen(process.env.port,async ()=>{
     try {

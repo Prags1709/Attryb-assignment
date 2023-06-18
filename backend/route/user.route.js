@@ -2,6 +2,7 @@ const express = require("express")
 const { UserModel } = require("../model/user.model")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+require('dotenv').config()
 
 const userRoute = express.Router()
 
@@ -36,8 +37,8 @@ userRoute.post("/login", async (req, res) => {
             const hash_password = user?.password;
             bcrypt.compare(password, hash_password, (err, result) => {
                 if (result) {
-                    const token = jwt.sign({ userID: user._id }, "N_unlock", { expiresIn: '3h' });
-                    const refresh_token = jwt.sign({ userID: user._id }, "R_unlock", { expiresIn: 180 });
+                    const token = jwt.sign({ userID: user._id }, process.env.key , { expiresIn: '3h' });
+                    const refresh_token = jwt.sign({ userID: user._id }, "R_unlock", { expiresIn: '15h' });
                     res.send({ msg: "Login successfully", token, refresh_token })
                 } else {
                     res.send({ message: "Something went wrong, login failed" })

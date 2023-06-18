@@ -7,8 +7,8 @@ const authentication = (req, res, next)=>{
         const decode = jwt.verify(token, process.env.key)
         if(decode){
             //console.log(decode);
-            const userId = decode.userId;
-            req.body.userId = userId;
+            const userID = decode.userID;
+            req.body.userID = userID;
             next()
         }else{
             res.status(404).send({message:"Please login First"})

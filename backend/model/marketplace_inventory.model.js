@@ -3,6 +3,7 @@ const {UserModel} = require("./user.model")
 
 const marketplaceInventorySchema = mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: UserModel},
+    userID: {type:String, required:true},
     image: {type:String, required:true},
     title: {type:String, required:true},
     discription: [{type:String}],
