@@ -37,6 +37,7 @@ const Login = () => {
                 const token = data.token;
 
                 localStorage.setItem("token", token);
+                localStorage.setItem("userId", data.userid);
                 window.location.href = "/";
             }else{
                 alert('Invalid credentials')
@@ -51,11 +52,15 @@ const Login = () => {
             <h2>LOGIN PAGE</h2>
             {error && <p>{error}</p>}
             <form onSubmit={dataSubmit}>
-                <label>Email:</label>
-                <input type="email" value={email} onChange={handleEmailChange} />
-                <label>Password:</label>
-                <input type="password" value={password} onChange={handlePasswordChange} />
-                <button type="submit">Login</button>
+                <div>
+                    <label>Email:</label><br />
+                    <input type="email" value={email} onChange={handleEmailChange} />
+                </div>
+                <div>
+                    <label>Password:</label><br />
+                    <input type="password" value={password} onChange={handlePasswordChange} />
+                </div>
+                <button className="sub" type="submit">Login</button>
             </form>
         </div>
     )

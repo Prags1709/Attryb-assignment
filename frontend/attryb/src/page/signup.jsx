@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from "react";
-//import { useHistory } from 'react-router-dom';
 
 const Siginup=()=>{
-    //const history = useHistory();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -60,15 +58,23 @@ const Siginup=()=>{
             <h2>SIGNUP PAGE</h2>
             {error && <p>{error}</p>}
             <form onSubmit={dataSubmit}>
-                <label>Name:</label>
-                <input type="text" value={name} onChange={handleNameChange} />
-                <label>Email:</label>
-                <input type="email" value={email} onChange={handleEmailChange} />
-                <label>Password:</label>
-                <input type="password" value={password} onChange={handlePasswordChange} />
-                <label>Phone Number:</label>
-                <input type="number" value={phoneNo} onChange={handlePhoneNumberChange} />
-                <button type="submit">Signup</button>
+                <div>
+                    <label>Name:</label><br />
+                    <input type="text" value={name} onChange={handleNameChange} />
+                </div>
+                <div>
+                    <label>Email:</label><br />
+                    <input type="email" value={email} onChange={handleEmailChange} />
+                </div>
+                <div>
+                    <label>Password:</label><br />
+                    <input type="password" value={password} onChange={handlePasswordChange} />
+                </div>
+                <div>
+                    <label>Phone Number:</label><br />
+                    <input type="number" value={phoneNo} onChange={handlePhoneNumberChange} />
+                </div>
+                <button className="sub" type="submit">Signup</button>
             </form>
         </div>
     )
