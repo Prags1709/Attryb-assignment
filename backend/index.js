@@ -16,9 +16,9 @@ app.get("/",(req, res)=>{
 })
 
 app.use("/user", userRoute)
+app.use("/oem", oemRoute)
 app.use(authentication)
 app.use("/car", carRoute)
-app.use("/oem", oemRoute)
 
 app.listen(process.env.port,async ()=>{
     try {

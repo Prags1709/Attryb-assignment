@@ -24,19 +24,6 @@ carRoute.post("/addCar", async (req, res)=>{
     }
 })
 
-//sample data
-// {
-//     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2loPsHDiV9jlEAVWANUJsUnadEnQFSgZpGg&usqp=CAU",
-//       "title": "Tata Nexon",
-//       "discription": ["test drive available","location sector-29","insurance type comprehensive","transmission manual","fuel Petrol"],
-//       "kilometer": "329",
-//       "scartchs": "littel dent in front",
-//       "color": "red",
-//       "noOfAccidents": 1,
-//       "noOfPreviousBuyers": 2,
-//       "registrationPlace": "chennai"
-//   }
-
 //edit second-hand car data (It can be only edit by dealer of the data)
 carRoute.patch("/update/:id", async (req, res)=>{
     const id = req.params.id;
@@ -50,7 +37,7 @@ carRoute.patch("/update/:id", async (req, res)=>{
 
         try {
             if(userID_making_req !== userID_in_cardata){
-                res.send({"msg":"Your not authorized"})
+                res.send({"msg":"Your not authorized to Edit & Delete this Data, authorized for only own Dealer"})
             }else{
                 await InventoryModel.findByIdAndUpdate({_id:id},payload)
                 res.send("Car data has been updated")
@@ -74,10 +61,10 @@ carRoute.delete("/delete/:id", async (req, res)=>{
 
         try {
             if(userID_making_req !== userID_in_cardata){
-                res.send({"msg":"Your not authorized"})
+                res.send({"msg":"Your not authorized to Edit & Delete this Data, authorized for only own Dealer"})
             }else{
                 await InventoryModel.findByIdAndDelete({_id:id})
-                res.send("Car data has been deleted")
+                res.send({"msg":"Data deleted successfully"})
             }
         } catch (error) {
             console.log(error);

@@ -7,46 +7,46 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const handleEmailChange = (e)=>{
+    const handleEmailChange = (e) => {
         setEmail(e.target.value)
     };
 
-    const handlePasswordChange = (e)=>{
+    const handlePasswordChange = (e) => {
         setPassword(e.target.value)
     };
 
-    const dataSubmit = async (event)=>{
+    const dataSubmit = async (event) => {
         event.preventDefault();
 
         setError("");
 
-        if(email && password){
+        if (email && password) {
             try {
-                const res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/user/login`,{
+                const res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/user/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({email, password}),
+                    body: JSON.stringify({ email, password }),
                 });
-    
-                if(res.ok){
+
+                if (res.ok) {
                     alert('Login successful');
                     setEmail("");
                     setPassword("");
                     const data = await res.json();
                     const token = data.token;
-    
+
                     localStorage.setItem("token", token);
                     localStorage.setItem("userId", data.userid);
                     window.location.href = "/";
-                }else{
+                } else {
                     alert('Invalid credentials')
                 }
             } catch (error) {
                 setError(error.message);
             }
-        }else{
+        } else {
             window.alert('Please fill in all the details');
         }
     }

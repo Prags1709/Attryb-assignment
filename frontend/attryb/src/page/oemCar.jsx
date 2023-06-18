@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
-const OemCar=()=>{
+const OemCar = () => {
     const [dataList, setDataList] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [priceFilter, setPriceFilter] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [priceFilter, setPriceFilter] = useState('');
 
     useEffect(() => {
         fetchData();
@@ -11,49 +11,49 @@ const OemCar=()=>{
 
     const fetchData = async () => {
         try {
-          const response = await fetch('https://nutty-blue-school-uniform.cyclic.app/oem/allOem',{
-            headers: {
-                'Content-Type': 'application/json',
-            }
-          });
-          const data = await response.json();
-          setDataList(data);
+            const response = await fetch('https://nutty-blue-school-uniform.cyclic.app/oem/allOem', {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            const data = await response.json();
+            setDataList(data);
         } catch (error) {
-          console.log('Error fetching data:', error);
+            console.log('Error fetching data:', error);
         }
     };
-    
-      const handlePriceFilterChange = (event) => {
+
+    const handlePriceFilterChange = (event) => {
         const filter = event.target.value;
         setPriceFilter(filter);
         filterData(searchQuery, filter);
-      };
-    
-      const filterData = (query, priceFilter) => {
+    };
+
+    const filterData = (query, priceFilter) => {
         let filtered = dataList;
-    
+
         if (query) {
-          filtered = filtered.filter((data) =>
-            data.modelName.toLowerCase().includes(query.toLowerCase())
-          );
+            filtered = filtered.filter((data) =>
+                data.modelName.toLowerCase().includes(query.toLowerCase())
+            );
         }
-    
+
         if (priceFilter) {
-          switch (priceFilter) {
-            case '10L-8L':
-              filtered = filtered.filter((data) => data.price >= 8 && data.price <= 10);
-              break;
-            case '8L-5L':
-              filtered = filtered.filter((data) => data.price >= 5 && data.price <= 8);
-              break;
-            // Add more price filter options if needed
-            default:
-              break;
-          }
+            switch (priceFilter) {
+                case '10L-8L':
+                    filtered = filtered.filter((data) => data.price >= 8 && data.price <= 10);
+                    break;
+                case '8L-5L':
+                    filtered = filtered.filter((data) => data.price >= 5 && data.price <= 8);
+                    break;
+                // Add more price filter options if needed
+                default:
+                    break;
+            }
         }
-    
+
         setDataList(filtered);
-      };
+    };
 
     return (
         <div className="OemCar">
@@ -70,7 +70,7 @@ const OemCar=()=>{
                         <p>Year Of Model: {data.yearOfModel}</p>
                         <img src={data.image} alt={data.modelName} />
                         <h5>Colors</h5>
-                        <ul>{data.color.map((ele)=>{
+                        <ul>{data.color.map((ele) => {
                             return (
                                 <li>{ele}</li>
                             )

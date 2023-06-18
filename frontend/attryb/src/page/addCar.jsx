@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 const discription = [
     "Test drive Available",
@@ -8,7 +8,7 @@ const discription = [
     "Insurance type comprehensive"
 ]
 
-const AddCar=()=>{
+const AddCar = () => {
     const [userID, setUserid] = useState(localStorage.getItem("userid"))
     const [title, setTitle] = useState("");
     const [image, setImage] = useState("");
@@ -20,56 +20,56 @@ const AddCar=()=>{
     const [registrationPlace, setRegist] = useState("");
     const [error, setError] = useState("");
 
-    const handleTitleChange = (e)=>{
+    const handleTitleChange = (e) => {
         setTitle(e.target.value)
     }
 
-    const handleImageChange = (e)=>{
+    const handleImageChange = (e) => {
         setImage(e.target.value)
     }
 
-    const handleDistenceChange = (e)=>{
+    const handleDistenceChange = (e) => {
         setKilometer(e.target.value)
     }
 
-    const handleScartchsChange = (e)=>{
+    const handleScartchsChange = (e) => {
         setScartch(e.target.value)
     }
 
-    const handleColorChange =(e)=>{
+    const handleColorChange = (e) => {
         setColor(e.target.value)
     }
 
-    const handleAccChange=(e)=>{
+    const handleAccChange = (e) => {
         setNoAcc(e.target.value)
     }
 
-    const handleBuyChange=(e) =>{
+    const handleBuyChange = (e) => {
         setBuyetCount(e.target.value)
     }
 
-    const handleRegistrationChange = (e)=>{
+    const handleRegistrationChange = (e) => {
         setRegist(e.target.value)
     }
 
-    const dataSubmit = async (event)=>{
+    const dataSubmit = async (event) => {
         event.preventDefault();
 
         setError("");
 
-    if(image && title && kilometer && scartchs && color 
-        && noOfAccidents && noOfPreviousBuyers && registrationPlace){
+        if (image && title && kilometer && scartchs && color
+            && noOfAccidents && noOfPreviousBuyers && registrationPlace) {
             try {
-                const res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/car/addCar`,{
+                const res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/car/addCar`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: localStorage.getItem("token")
                     },
                     body: JSON.stringify({
-                        userID, 
-                        image, 
-                        title, 
+                        userID,
+                        image,
+                        title,
                         discription,
                         kilometer,
                         scartchs,
@@ -79,8 +79,8 @@ const AddCar=()=>{
                         registrationPlace
                     }),
                 });
-    
-                if(res.ok){
+
+                if (res.ok) {
                     alert('Car data has been created successful');
                     setTitle("");
                     setImage("");
@@ -90,16 +90,16 @@ const AddCar=()=>{
                     setNoAcc("");
                     setBuyetCount("");
                     setRegist("");
-                }else{
+                } else {
                     alert('Invalid credentials, Please Login')
                 }
             } catch (error) {
                 setError(error.message);
             }
-        }else{
+        } else {
             window.alert('Please fill in all the details');
-        }    
-        
+        }
+
     }
 
     return (

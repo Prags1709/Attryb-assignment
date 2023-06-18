@@ -1,60 +1,60 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
-const Siginup=()=>{
+const Siginup = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phoneNo, setPhoneNo] = useState("");
     const [error, setError] = useState("");
 
-    const handleNameChange = (e)=>{
+    const handleNameChange = (e) => {
         setName(e.target.value)
     };
 
-    const handleEmailChange = (e)=>{
+    const handleEmailChange = (e) => {
         setEmail(e.target.value)
     };
 
-    const handlePasswordChange = (e)=>{
+    const handlePasswordChange = (e) => {
         setPassword(e.target.value)
     };
 
-    const handlePhoneNumberChange = (e)=>{
+    const handlePhoneNumberChange = (e) => {
         setPhoneNo(e.target.value)
     }
 
-    const dataSubmit = async (event)=>{
+    const dataSubmit = async (event) => {
         event.preventDefault();
 
         setError("");
 
-      if(name && email && password && phoneNo){
-        try {
-            const res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/user/signup`,{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({name, email, password, phoneNo}),
-            });
+        if (name && email && password && phoneNo) {
+            try {
+                const res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/user/signup`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, password, phoneNo }),
+                });
 
-            if(!res.ok){
-                alert('Invalid credentials')
-            }else{
-                alert('User Signup successful');
-                setName("");
-                setEmail("");
-                setPassword("");
-                setPhoneNo("");
-                window.location.href = "/login";
+                if (!res.ok) {
+                    alert('Invalid credentials')
+                } else {
+                    alert('User Signup successful');
+                    setName("");
+                    setEmail("");
+                    setPassword("");
+                    setPhoneNo("");
+                    window.location.href = "/login";
+                }
+
+            } catch (error) {
+                setError(error.message);
             }
-            
-        } catch (error) {
-            setError(error.message);
+        } else {
+            window.alert('Please fill in all the details');
         }
-      }else{
-        window.alert('Please fill in all the details');
-      } 
     }
 
     return (

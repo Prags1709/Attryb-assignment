@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
-const SecHandCar=()=>{
+const SecHandCar = () => {
     const [dataList, setDataList] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [title, setTitle] = useState("");
@@ -20,47 +20,47 @@ const SecHandCar=()=>{
 
     const fetchData = async () => {
         try {
-          const response = await fetch('https://nutty-blue-school-uniform.cyclic.app/car/allCar',{
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem("token")
-            }
-          });
-          const data = await response.json();
-          setDataList(data);
+            const response = await fetch('https://nutty-blue-school-uniform.cyclic.app/car/allCar', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem("token")
+                }
+            });
+            const data = await response.json();
+            setDataList(data);
         } catch (error) {
-          console.log('Error fetching data:', error);
+            console.log('Error fetching data:', error);
         }
     };
 
     //delete function
     const handleDelete = async (id, ele) => {
         try {
-          let res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/car/delete/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem("token")
-            }
-          });
-          
-          if(res.ok){
-            let data =await res.json()
-            alert(data.msg)
-            if(data.msg === "Data deleted successfully"){
-                let deletedData = [...dataList]
-                let finditem = deletedData.findIndex(i => i._id===id)
-                deletedData.splice(finditem, 1)
-                setDataList(deletedData);
-            }  
-          }
-        } catch (error) {
-          console.log('Error deleting data:', error);
-        }
-      };
+            let res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/car/delete/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem("token")
+                }
+            });
 
-      //edit function
-      const handleEdit = async (id, ele) => {
+            if (res.ok) {
+                let data = await res.json()
+                alert(data.msg)
+                if (data.msg === "Data deleted successfully") {
+                    let deletedData = [...dataList]
+                    let finditem = deletedData.findIndex(i => i._id === id)
+                    deletedData.splice(finditem, 1)
+                    setDataList(deletedData);
+                }
+            }
+        } catch (error) {
+            console.log('Error deleting data:', error);
+        }
+    };
+
+    //edit function
+    const handleEdit = async (id, ele) => {
         setIsEditing(true);
         setEditId(id)
         setTitle(ele.title);
@@ -71,45 +71,45 @@ const SecHandCar=()=>{
         setNoAcc(ele.noOfAccidents);
         setBuyetCount(ele.noOfPreviousBuyers);
         setRegist(ele.registrationPlace);
-      }; 
-      
-      const handleSubmit =async (event) => {
+    };
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             let res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/car/update/${editId}`, {
-              method: 'PATCH',
-              headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: localStorage.getItem("token")
-              },
-              body: JSON.stringify({
-                  image, 
-                  title, 
-                  kilometer,
-                  scartchs,
-                  color,
-                  noOfAccidents,
-                  noOfPreviousBuyers,
-                  registrationPlace
-              }),
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem("token")
+                },
+                body: JSON.stringify({
+                    image,
+                    title,
+                    kilometer,
+                    scartchs,
+                    color,
+                    noOfAccidents,
+                    noOfPreviousBuyers,
+                    registrationPlace
+                }),
             });
-            
-            if(res.ok){
-              let data =await res.json()
-              alert(data.msg)
+
+            if (res.ok) {
+                let data = await res.json()
+                alert(data.msg)
             }
 
-          } catch (error) {
+        } catch (error) {
             console.log('Error deleting data:', error);
-          }   
+        }
         setIsEditing(false);
-      };
+    };
 
-      //filter function
-      const handleColorFilterChange = (event) => {
+    //filter function
+    const handleColorFilterChange = (event) => {
         const selectedColor = event.target.value;
         setFilterColor(selectedColor);
-      };
+    };
 
     return (
         <div className="SecHandCar">
@@ -124,32 +124,32 @@ const SecHandCar=()=>{
 
             <div className="main-box">
                 {dataList.filter((data) => !filterColor || data.color === filterColor)
-                .map(data => (
-                    <div className="data-box" key={data._id + data.title}>
-                        <h4>Brand: {data.title}</h4>
-                        <img src={data.image} alt={data.title} />
-                        <ul>{data.discription.map((ele)=>{
-                            return (
-                                <li>{ele}</li>
-                            )
-                        })}</ul>
-                        <p>Kilimeter: {data.kilometer}Km</p>
-                        <p>scartchs: {data.scartchs}</p>
-                        <p>color: {data.color}</p>
-                        <p>Number of Accidents: {data.noOfAccidents}</p>
-                        <p>Number of Prvious Buyers: {data.noOfPreviousBuyers}</p>
-                        <p> registration Place: {data.registrationPlace}</p>
-                        <button className="edit" onClick={() => handleEdit(data._id, data)}>Edit</button>
-                        <button className="del" onClick={() => handleDelete(data._id, data)}>Delete</button>
-                    </div>
-                ))}
+                    .map(data => (
+                        <div className="data-box" key={data._id + data.title}>
+                            <h4>Brand: {data.title}</h4>
+                            <img src={data.image} alt={data.title} />
+                            <ul>{data.discription.map((ele) => {
+                                return (
+                                    <li>{ele}</li>
+                                )
+                            })}</ul>
+                            <p>Kilimeter: {data.kilometer}Km</p>
+                            <p>scartchs: {data.scartchs}</p>
+                            <p>color: {data.color}</p>
+                            <p>Number of Accidents: {data.noOfAccidents}</p>
+                            <p>Number of Prvious Buyers: {data.noOfPreviousBuyers}</p>
+                            <p> registration Place: {data.registrationPlace}</p>
+                            <button className="edit" onClick={() => handleEdit(data._id, data)}>Edit</button>
+                            <button className="del" onClick={() => handleDelete(data._id, data)}>Delete</button>
+                        </div>
+                    ))}
             </div>
             {isEditing && (
                 <div className="edit-box" style={{ display: 'block' }}>
                     <form onSubmit={handleSubmit}>
                         <div>
                             <label>Title:</label><br />
-                            <input type="text" value={title} onChange={(event) => setTitle(event.target.value)}/>
+                            <input type="text" value={title} onChange={(event) => setTitle(event.target.value)} />
                         </div>
                         <div>
                             <label>Add Image Link:</label><br />
