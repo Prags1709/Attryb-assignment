@@ -55,7 +55,7 @@ label {
 .del {
   width: 30%;
   height: 27px;
-  background-color: rgb(219, 105, 105);
+  background-color: rgb(236, 13, 13);
   border: 0px;
   color: white;
   font-size: medium;
@@ -66,7 +66,7 @@ label {
 .edit {
   width: 30%;
   height: 27px;
-  background-color: rgb(207, 207, 61);
+  background-color: blue;
   border: 0px;
   color: white;
   font-size: medium;
@@ -75,4 +75,36 @@ label {
 
 img {
   width: 100%;
+}
+
+.edit-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(8, 8, 8, 0.5); /* Adjust the opacity to control the level of blur */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.edit-box>form {
+  background-color: rgb(8, 8, 8);
+}
+
+.edit-box>form> button {
+  margin-top: 15px;
+  width: 82%;
+  height: 25px;
+  background-color: green;
+  border: 0px;
+  font-size: large;
+}
+
+select {
+  width: 30%;
+  border-radius: 5px;
+  height: 35px;
 }

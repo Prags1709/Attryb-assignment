@@ -28,6 +28,7 @@ const Siginup=()=>{
 
         setError("");
 
+      if(name && email && password && phoneNo){
         try {
             const res = await fetch(`http://localhost:4000/user/signup`,{
                 method: 'POST',
@@ -51,6 +52,9 @@ const Siginup=()=>{
         } catch (error) {
             setError(error.message);
         }
+      }else{
+        window.alert('Please fill in all the details');
+      } 
     }
 
     return (

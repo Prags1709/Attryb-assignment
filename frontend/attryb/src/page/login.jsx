@@ -20,30 +20,34 @@ const Login = () => {
 
         setError("");
 
-        try {
-            const res = await fetch(`http://localhost:4000/user/login`,{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({email, password}),
-            });
-
-            if(res.ok){
-                alert('Login successful');
-                setEmail("");
-                setPassword("");
-                const data = await res.json();
-                const token = data.token;
-
-                localStorage.setItem("token", token);
-                localStorage.setItem("userId", data.userid);
-                window.location.href = "/";
-            }else{
-                alert('Invalid credentials')
+        if(email && password){
+            try {
+                const res = await fetch(`http://localhost:4000/user/login`,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({email, password}),
+                });
+    
+                if(res.ok){
+                    alert('Login successful');
+                    setEmail("");
+                    setPassword("");
+                    const data = await res.json();
+                    const token = data.token;
+    
+                    localStorage.setItem("token", token);
+                    localStorage.setItem("userId", data.userid);
+                    window.location.href = "/";
+                }else{
+                    alert('Invalid credentials')
+                }
+            } catch (error) {
+                setError(error.message);
             }
-        } catch (error) {
-            setError(error.message);
+        }else{
+            window.alert('Please fill in all the details');
         }
     }
 

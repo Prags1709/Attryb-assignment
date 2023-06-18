@@ -57,43 +57,49 @@ const AddCar=()=>{
 
         setError("");
 
-        try {
-            const res = await fetch(`http://localhost:4000/car/addCar`,{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: localStorage.getItem("token")
-                },
-                body: JSON.stringify({
-                    userID, 
-                    image, 
-                    title, 
-                    discription,
-                    kilometer,
-                    scartchs,
-                    color,
-                    noOfAccidents,
-                    noOfPreviousBuyers,
-                    registrationPlace
-                }),
-            });
-
-            if(res.ok){
-                alert('Car data has been created successful');
-                setTitle("");
-                setImage("");
-                setKilometer("");
-                setScartch("");
-                setColor("");
-                setNoAcc("");
-                setBuyetCount("");
-                setRegist("");
-            }else{
-                alert('Invalid credentials, Please Login')
+    if(image && title && kilometer && scartchs && color 
+        && noOfAccidents && noOfPreviousBuyers && registrationPlace){
+            try {
+                const res = await fetch(`http://localhost:4000/car/addCar`,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: localStorage.getItem("token")
+                    },
+                    body: JSON.stringify({
+                        userID, 
+                        image, 
+                        title, 
+                        discription,
+                        kilometer,
+                        scartchs,
+                        color,
+                        noOfAccidents,
+                        noOfPreviousBuyers,
+                        registrationPlace
+                    }),
+                });
+    
+                if(res.ok){
+                    alert('Car data has been created successful');
+                    setTitle("");
+                    setImage("");
+                    setKilometer("");
+                    setScartch("");
+                    setColor("");
+                    setNoAcc("");
+                    setBuyetCount("");
+                    setRegist("");
+                }else{
+                    alert('Invalid credentials, Please Login')
+                }
+            } catch (error) {
+                setError(error.message);
             }
-        } catch (error) {
-            setError(error.message);
-        }
+        }else{
+            window.alert('Please fill in all the details');
+        }    
+        
     }
 
     return (
