@@ -11,7 +11,7 @@ const OemCar=()=>{
 
     const fetchData = async () => {
         try {
-          const response = await fetch('http://localhost:4000/oem/allOem',{
+          const response = await fetch('https://nutty-blue-school-uniform.cyclic.app/oem/allOem',{
             headers: {
                 'Content-Type': 'application/json',
             }

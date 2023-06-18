@@ -30,7 +30,7 @@ const Siginup=()=>{
 
       if(name && email && password && phoneNo){
         try {
-            const res = await fetch(`http://localhost:4000/user/signup`,{
+            const res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/user/signup`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

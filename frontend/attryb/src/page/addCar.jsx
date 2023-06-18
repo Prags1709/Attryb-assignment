@@ -60,7 +60,7 @@ const AddCar=()=>{
     if(image && title && kilometer && scartchs && color 
         && noOfAccidents && noOfPreviousBuyers && registrationPlace){
             try {
-                const res = await fetch(`http://localhost:4000/car/addCar`,{
+                const res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/car/addCar`,{
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
