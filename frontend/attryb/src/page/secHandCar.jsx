@@ -29,6 +29,7 @@ const SecHandCar = () => {
             const data = await response.json();
             setDataList(data);
         } catch (error) {
+            alert('Please Login First')
             console.log('Error fetching data:', error);
         }
     };

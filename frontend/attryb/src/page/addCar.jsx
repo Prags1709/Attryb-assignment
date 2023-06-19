@@ -81,7 +81,8 @@ const AddCar = () => {
                 });
 
                 if (res.ok) {
-                    alert('Car data has been created successful');
+                    let data = await res.json()
+                    alert("Your data has been added");
                     setTitle("");
                     setImage("");
                     setKilometer("");
@@ -94,6 +95,7 @@ const AddCar = () => {
                     alert('Invalid credentials, Please Login')
                 }
             } catch (error) {
+                alert('Invalid credentials, Please Login')
                 setError(error.message);
             }
         } else {
