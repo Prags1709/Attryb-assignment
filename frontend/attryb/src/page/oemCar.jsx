@@ -69,12 +69,14 @@ const OemCar = () => {
                         <h4>Model Name: {data.modelName}</h4>
                         <p>Year Of Model: {data.yearOfModel}</p>
                         <img src={data.image} alt={data.modelName} />
-                        <h5>Colors</h5>
-                        <ul>{data.color.map((ele) => {
+                        <h5>Available Colors</h5>
+                        <div className="car-color">{data.color.map((ele) => {
                             return (
-                                <li>{ele}</li>
+                                <div style={{
+                                    backgroundColor: `${ele}`
+                                }}></div>
                             )
-                        })}</ul>
+                        })}</div>
                         <p>Price: {data.price}L</p>
                         <p>Mileage: {data.mileage}</p>
                         <p>Power: {data.power}</p>
