@@ -22,7 +22,7 @@ const Login = () => {
 
         if (email && password) {
             try {
-                const res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/user/login`, {
+                const res = await fetch(`https://repulsive-outfit-frog.cyclic.cloud/user/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

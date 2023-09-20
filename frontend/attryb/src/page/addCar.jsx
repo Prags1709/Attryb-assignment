@@ -60,7 +60,7 @@ const AddCar = () => {
         if (image && title && kilometer && scartchs && color
             && noOfAccidents && noOfPreviousBuyers && registrationPlace) {
             try {
-                const res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/car/addCar`, {
+                const res = await fetch(`https://repulsive-outfit-frog.cyclic.cloud/car/addCar`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -141,7 +141,7 @@ const AddCar = () => {
                     <label>Registration Place:</label><br />
                     <input type="text" value={registrationPlace} onChange={handleRegistrationChange} />
                 </div>
-                <button className="sub" type="submit">Login</button>
+                <button className="sub" type="submit">ADD TO CART</button>
             </form>
         </div>
     )

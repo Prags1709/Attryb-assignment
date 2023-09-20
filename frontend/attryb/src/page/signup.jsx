@@ -5,6 +5,7 @@ const Siginup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phoneNo, setPhoneNo] = useState("");
+    const [role, setRole] = useState("");
     const [error, setError] = useState("");
 
     const handleNameChange = (e) => {
@@ -23,19 +24,23 @@ const Siginup = () => {
         setPhoneNo(e.target.value)
     }
 
+    const handleRoleChange = (e)=>{
+        setRole(e.target.value);
+    }
+
     const dataSubmit = async (event) => {
         event.preventDefault();
 
         setError("");
 
-        if (name && email && password && phoneNo) {
+        if (name && email && password && phoneNo && role) {
             try {
-                const res = await fetch(`https://nutty-blue-school-uniform.cyclic.app/user/signup`, {
+                const res = await fetch(`https://repulsive-outfit-frog.cyclic.cloud/user/signup`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ name, email, password, phoneNo }),
+                    body: JSON.stringify({ name, email, password, phoneNo, role }),
                 });
 
                 if (!res.ok) {
@@ -46,6 +51,7 @@ const Siginup = () => {
                     setEmail("");
                     setPassword("");
                     setPhoneNo("");
+                    setRole("")
                     window.location.href = "/login";
                 }
 
@@ -77,6 +83,14 @@ const Siginup = () => {
                 <div>
                     <label>Phone Number:</label><br />
                     <input type="number" value={phoneNo} onChange={handlePhoneNumberChange} />
+                </div>
+                <div>
+                    <label>User Role:</label><br />
+                    <select className="role-box" value={role} onChange={handleRoleChange}>
+                        <option value="">Select User Role</option>
+                        <option value="buyer">Buyer</option>
+                        <option value="dealer">Dealer</option>
+                    </select>
                 </div>
                 <button className="sub" type="submit">Signup</button>
             </form>
