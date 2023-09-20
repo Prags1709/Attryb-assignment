@@ -2,7 +2,7 @@
 
 **Deploy Link**
 - vercel website link-> https://attryb-assignment-zp94.vercel.app/
-- cyclic Backend link-> https://nutty-blue-school-uniform.cyclic.app/
+- cyclic Backend link-> https://repulsive-outfit-frog.cyclic.cloud/
 
 **Tech Stacks Used**
 
