@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-//import { useHistory } from 'react-router-dom';
 
 const Login = () => {
-    //const history = useHistory();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -22,7 +20,7 @@ const Login = () => {
 
         if (email && password) {
             try {
-                const res = await fetch(`https://repulsive-outfit-frog.cyclic.cloud/user/login`, {
+                const res = await fetch(`https://persian-blue-yak-hose.cyclic.cloud/user/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -36,7 +34,6 @@ const Login = () => {
                     setPassword("");
                     const data = await res.json();
                     const token = data.token;
-
                     localStorage.setItem("token", token);
                     localStorage.setItem("userId", data.userid);
                     window.location.href = "/";

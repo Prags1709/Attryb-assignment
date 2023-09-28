@@ -5,7 +5,9 @@ const oemSchema = mongoose.Schema({
     modelName: {type:String, required:true},
     yearOfModel: {type:Number, required:true},
     price: {type:Number, required:true},
-    color: [{type:String, required:true}],
+    color: [
+        {type:String, required:true}
+    ],
     mileage: {type:String, required:true},
     power: {type:String, required:true},
     maxSpeed: {type:String, required:true}

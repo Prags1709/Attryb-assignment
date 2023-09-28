@@ -6,10 +6,10 @@ const userSchema = mongoose.Schema({
     password: {type:String, required:true},
     phoneNo: {type:Number, required:true},
     role: {
-        type: String,
-        enum: ['dealer', 'buyer'],
-        required: true
-      }
+      type: String,
+      enum: ['dealer', 'buyer'],
+      required: true
+    }
 })
 
 const UserModel = mongoose.model("user", userSchema)

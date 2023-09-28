@@ -60,7 +60,7 @@ const AddCar = () => {
         if (image && title && kilometer && scartchs && color
             && noOfAccidents && noOfPreviousBuyers && registrationPlace) {
             try {
-                const res = await fetch(`https://repulsive-outfit-frog.cyclic.cloud/car/addCar`, {
+                const res = await fetch(`https://persian-blue-yak-hose.cyclic.cloud/car/addCar`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 
 const OemCar = () => {
     const [dataList, setDataList] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
     const [priceFilter, setPriceFilter] = useState('');
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [priceFilter]);
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://repulsive-outfit-frog.cyclic.cloud/oem/allOem', {
+            const response = await fetch('https://persian-blue-yak-hose.cyclic.cloud/oem/allOem', {
                 headers: {
                     'Content-Type': 'application/json',
                 }
@@ -26,33 +25,6 @@ const OemCar = () => {
     const handlePriceFilterChange = (event) => {
         const filter = event.target.value;
         setPriceFilter(filter);
-        filterData(searchQuery, filter);
-    };
-
-    const filterData = (query, priceFilter) => {
-        let filtered = dataList;
-
-        if (query) {
-            filtered = filtered.filter((data) =>
-                data.modelName.toLowerCase().includes(query.toLowerCase())
-            );
-        }
-
-        if (priceFilter) {
-            switch (priceFilter) {
-                case '10L-8L':
-                    filtered = filtered.filter((data) => data.price >= 8 && data.price <= 10);
-                    break;
-                case '8L-5L':
-                    filtered = filtered.filter((data) => data.price >= 5 && data.price <= 8);
-                    break;
-                // Add more price filter options if needed
-                default:
-                    break;
-            }
-        }
-
-        setDataList(filtered);
     };
 
     return (
@@ -60,11 +32,13 @@ const OemCar = () => {
             <h2>OEM CAR PAGE</h2>
             <select value={priceFilter} onChange={handlePriceFilterChange}>
                 <option value="">All Prices</option>
-                <option value="10L-8L">10L-8L</option>
-                <option value="8L-5L">8L-5L</option>
+                <option value="10">Above 10L</option>
+                <option value="8">Above 8</option>
+                <option value="6">Above 6</option>
             </select>
             <div className="main-box">
-                {dataList.map(data => (
+                {dataList.filter((data)=> !priceFilter || data.price > priceFilter)
+                .map(data => (
                     <div className="data-box" key={data._id + data.modelName}>
                         <h4>Model Name: {data.modelName}</h4>
                         <p>Year Of Model: {data.yearOfModel}</p>

@@ -35,7 +35,7 @@ const Siginup = () => {
 
         if (name && email && password && phoneNo && role) {
             try {
-                const res = await fetch(`https://repulsive-outfit-frog.cyclic.cloud/user/signup`, {
+                const res = await fetch(`https://persian-blue-yak-hose.cyclic.cloud/user/signup`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

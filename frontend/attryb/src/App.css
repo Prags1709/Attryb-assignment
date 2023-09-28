@@ -128,3 +128,13 @@ select {
   border-radius: 5px;
   height: 35px;
 }
+
+.cancel {
+  background-color: red;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: large;
+  font-weight: 700;
+}

@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {Link, Routes, Route, NavLink} from 'react-router-dom'
+import {Routes, Route, NavLink} from 'react-router-dom'
 
 let obj = [
     {path:"/",title:"OEM Car"},

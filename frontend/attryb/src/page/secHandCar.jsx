@@ -20,7 +20,7 @@ const SecHandCar = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://repulsive-outfit-frog.cyclic.cloud/car/allCar', {
+            const response = await fetch('https://persian-blue-yak-hose.cyclic.cloud/car/allCar', {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: localStorage.getItem("token")
@@ -37,7 +37,7 @@ const SecHandCar = () => {
     //delete function
     const handleDelete = async (id, ele) => {
         try {
-            let res = await fetch(`https://repulsive-outfit-frog.cyclic.cloud/car/delete/${id}`, {
+            let res = await fetch(`https://persian-blue-yak-hose.cyclic.cloud/car/delete/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -74,10 +74,14 @@ const SecHandCar = () => {
         setRegist(ele.registrationPlace);
     };
 
+    const handelEditCancel = ()=>{
+        setIsEditing(false)
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            let res = await fetch(`https://repulsive-outfit-frog.cyclic.cloud/car/update/${editId}`, {
+            let res = await fetch(`https://persian-blue-yak-hose.cyclic.cloud/car/update/${editId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -148,6 +152,7 @@ const SecHandCar = () => {
             {isEditing && (
                 <div className="edit-box" style={{ display: 'block' }}>
                     <form onSubmit={handleSubmit}>
+                        <div onClick={handelEditCancel} className="cancel">X</div>
                         <div>
                             <label>Title:</label><br />
                             <input type="text" value={title} onChange={(event) => setTitle(event.target.value)} />
@@ -182,11 +187,6 @@ const SecHandCar = () => {
                         </div>
                         <button type="submit">Save</button>
                     </form>
-                </div>
-            )}
-
-            {!isEditing && (
-                <div style={{ display: 'none' }}>
                 </div>
             )}
         </div>
