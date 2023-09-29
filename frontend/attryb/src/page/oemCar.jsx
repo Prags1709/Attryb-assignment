@@ -38,7 +38,7 @@ const OemCar = () => {
             </select>
             <div className="main-box">
                 {dataList.filter((data)=> !priceFilter || data.price > priceFilter)
-                .map(data => (
+                    .map(data => (
                     <div className="data-box" key={data._id + data.modelName}>
                         <h4>Model Name: {data.modelName}</h4>
                         <p>Year Of Model: {data.yearOfModel}</p>

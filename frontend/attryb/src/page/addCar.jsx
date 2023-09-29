@@ -141,7 +141,7 @@ const AddCar = () => {
                     <label>Registration Place:</label><br />
                     <input type="text" value={registrationPlace} onChange={handleRegistrationChange} />
                 </div>
-                <button className="sub" type="submit">ADD TO CART</button>
+                <button className="sub" type="submit">ADD CAR</button>
             </form>
         </div>
     )
